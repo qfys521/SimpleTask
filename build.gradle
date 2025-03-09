@@ -1,0 +1,49 @@
+plugins {
+    id 'java'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'org.jetbrains.dokka' version '1.9.20' // 添加 Dokka 插件
+}
+
+group = 'cn.qfys521.simpleTask'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "spigotmc-repo"
+        url = "https://hub.spigotmc.org/nexus/content/repositories/snapshots/"
+    }
+    maven {
+        name = "sonatype"
+        url = "https://oss.sonatype.org/content/groups/public/"
+    }
+}
+
+dependencies {
+    implementation 'org.jetbrains:annotations:24.0.0'
+    compileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    testCompileOnly("org.spigotmc:spigot-api:1.20.1-R0.1-SNAPSHOT")
+    testImplementation("org.jetbrains.annotations:annotations:24.0.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+}
+
+kotlin {
+    jvmToolchain(17)
+}
+tasks.dokkaHtml {
+    outputDirectory.set(file("$buildDir/dokka/dokkaHtml")) // 设置输出目录
+}
+
+tasks.dokkaJavadoc {
+    outputDirectory.set(file("$buildDir/dokka/dokkaJavadoc")) // 设置输出目录
+}
+
+tasks.dokkaGfm {
+    outputDirectory.set(file("$buildDir/dokka/dokkaGfm")) // 设置输出目录
+}
+
+tasks.dokkaJekyll {
+    outputDirectory.set(file("$buildDir/dokka/dokkaJekyll")) // 设置输出目录
+}
