@@ -59,7 +59,7 @@ class SimpleNPC(
             villager.isCustomNameVisible = true
             villager.profession = Villager.Profession.valueOf(profession.uppercase())
             villager.isInvulnerable = true // 无敌
-            villager.addPotionEffect(PotionEffect(PotionEffectType.SLOW, Int.MAX_VALUE, 255, false, false)) // 不可移动
+            villager.addPotionEffect(PotionEffect(PotionEffectType.SLOWNESS, Int.MAX_VALUE, 255, false, false)) // 不可移动
             villager.setAI(false) // 禁用 AI
         }
     }
