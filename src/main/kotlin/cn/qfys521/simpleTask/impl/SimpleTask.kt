@@ -12,11 +12,26 @@ import org.bukkit.entity.Player
  * @property taskText 任务的文本
  */
 class SimpleTask(
-    override val taskName: String,
-    override val taskUuid: String,
-    override val taskDescription: String,
-    override val taskText: List<String>
+    val taskName: String,
+    val taskUuid: String,
+    val taskDescription: String,
+    val taskText: List<String>
 ) : Task {
+    override fun taskName(): String {
+        return taskName
+    }
+
+    override fun taskUuid(): String {
+        return taskUuid
+    }
+
+    override fun taskDescription(): String {
+        return taskDescription
+    }
+
+    override fun taskText(): List<String> {
+        return taskText
+    }
 
     /**
      * 任务开始时调用的方法。

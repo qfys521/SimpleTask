@@ -25,10 +25,10 @@ import org.bukkit.potion.PotionEffectType
  * @property bukkitEntity 关联的 Bukkit 实体
  */
 class SimpleNPC(
-    override val id: String,
-    override val name: String,
-    override val profession: String,
-    override val location: Triple<Int, Int, Int>,
+    val id: String,
+    val name: String,
+    val profession: String,
+    val location: Triple<Int, Int, Int>,
     private val taskList: TaskList,
     private val dialogueSystem: DialogueSystem,
     var bukkitEntity: Villager? = null // 改为可空类型，允许为空
@@ -64,6 +64,22 @@ class SimpleNPC(
         }
     }
 
+    override fun id(): String {
+        return id
+    }
+
+    override fun name(): String {
+        return name
+    }
+
+    override fun profession(): String {
+        return profession
+    }
+
+    override fun location(): Triple<Int, Int, Int> {
+        return location
+    }
+
     /**
      * 与玩家交互。
      *
@@ -86,17 +102,17 @@ class SimpleNPC(
      */
     private fun handleDialogue(player: Player, dialogue: Dialogue) {
         // 发送 NPC 的对话消息
-        player.sendMessage("${ChatColor.GREEN}$name: ${dialogue.npcMessage}")
+        player.sendMessage("${ChatColor.GREEN}$name: ${dialogue.npcMessage()}")
 
         // 检查是否需要提交物品
-        val requiredItem = dialogue.requiredItem?.toItemStack()
+        val requiredItem = dialogue.requiredItem()?.toItemStack()
         if (requiredItem != null) {
             if (player.inventory.containsAtLeast(requiredItem, requiredItem.amount)) {
                 // 移除玩家物品
                 player.inventory.removeItem(requiredItem)
 
                 // 给予奖励物品
-                dialogue.rewardItem?.let {
+                dialogue.rewardItem()?.let {
                     val reward = it.toItemStack()
                     if (reward != null) {
                         player.inventory.addItem(reward)
@@ -112,12 +128,12 @@ class SimpleNPC(
         }
 
         // 显示玩家选项
-        dialogue.playerOptions.forEachIndexed { index, option ->
+        dialogue.playerOptions().forEachIndexed { index, option ->
             player.sendMessage("${ChatColor.YELLOW}[$index] $option")
         }
 
         // 如果有下一轮对话，则更新对话系统
-        dialogue.nextDialogueId?.let {
+        dialogue.nextDialogueId()?.let {
             dialogueSystem.nextDialogue()
         }
     }

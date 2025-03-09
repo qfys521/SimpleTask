@@ -11,28 +11,28 @@ interface Task {
      *
      * @return 任务的名称
      */
-    val taskName: String
+    fun taskName(): String
 
     /**
      * 获取任务的UUID。
      *
      * @return 任务的UUID
      */
-    val taskUuid: String
+    fun taskUuid(): String
 
     /**
      * 获取任务的描述。
      *
      * @return 任务的描述
      */
-    val taskDescription: String
+    fun taskDescription(): String
 
     /**
      * 获取任务的文本。
      *
      * @return 任务的文本
      */
-    val taskText: List<String>
+    fun taskText(): List<String>
 
     /**
      * 任务开始时调用的方法。
