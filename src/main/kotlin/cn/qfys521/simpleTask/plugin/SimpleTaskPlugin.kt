@@ -5,7 +5,7 @@ import cn.qfys521.simpleTask.listener.NPCListener
 import org.bukkit.plugin.java.JavaPlugin
 
 class SimpleTaskPlugin : JavaPlugin() {
-    private val npcManager = NPCManager()
+    val npcManager = NPCManager()
 
     override fun onEnable() {
         // 注册事件监听器

@@ -7,6 +7,10 @@ import cn.qfys521.simpleTask.model.ItemStackData
  */
 interface Dialogue {
     /**
+     * 获取当前对话的ID。
+     */
+    val dialogueId: String
+    /**
      * 获取NPC的消息。
      *
      * @return NPC的消息

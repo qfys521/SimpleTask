@@ -46,7 +46,7 @@ class SimpleNPC(
     /**
      * 生成村民并设置属性。
      */
-    fun spawnVillager() {
+    override fun spawnVillager() {
         val world = plugin.server.worlds[0] // 获取主世界
         val loc = Location(world, location.first.toDouble(), location.second.toDouble(), location.third.toDouble())
 
@@ -89,7 +89,7 @@ class SimpleNPC(
         player.sendMessage("${ChatColor.GREEN}$name: ${dialogue.npcMessage}")
 
         // 检查是否需要提交物品
-        val requiredItem = dialogue.requiredItem?.let { it.toItemStack() }
+        val requiredItem = dialogue.requiredItem?.toItemStack()
         if (requiredItem != null) {
             if (player.inventory.containsAtLeast(requiredItem, requiredItem.amount)) {
                 // 移除玩家物品

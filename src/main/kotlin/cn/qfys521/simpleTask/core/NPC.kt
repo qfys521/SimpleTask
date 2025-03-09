@@ -40,4 +40,9 @@ interface NPC {
      * @param player 与之互动的玩家
      */
     fun interactWithPlayer(player: Player)
+
+    /**
+     * 生成村民并设置属性。
+     */
+    fun spawnVillager()
 }

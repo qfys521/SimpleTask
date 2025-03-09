@@ -1,7 +1,7 @@
 package cn.qfys521.simpleTask.listener
 
+import cn.qfys521.simpleTask.core.NPC
 import cn.qfys521.simpleTask.database.NPCManager
-import cn.qfys521.simpleTask.impl.SimpleNPC
 import org.bukkit.entity.Villager
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -25,10 +25,12 @@ class NPCListener(private val npcManager: NPCManager) : Listener {
         if (entity is Villager) {
             // 检查是否为NPC的村民
             val npc = npcManager.getNPCByEntity(entity)
-            if (npc is SimpleNPC) {
+            if (npc is NPC) {
                 // 重新生成村民
                 npc.spawnVillager()
             }
         }
     }
+
+
 }
