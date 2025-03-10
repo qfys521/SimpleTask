@@ -1,4 +1,4 @@
-import cn.qfys521.simpleTask.database.NPCManager
+import cn.qfys521.simpleTask.configure.database.NPCManagerDatabaseImpl
 import cn.qfys521.simpleTask.impl.SimpleNPC
 import cn.qfys521.simpleTask.impl.SimpleTask
 import cn.qfys521.simpleTask.model.DialogueData
@@ -9,7 +9,7 @@ import org.bukkit.Material
 import org.bukkit.inventory.ItemStack
 
 class TestSimpleNPCTask {
-    val npcManager = NPCManager()
+    val npcManager = NPCManagerDatabaseImpl()
 
     val task = SimpleTask(
         taskName = "收集木材",

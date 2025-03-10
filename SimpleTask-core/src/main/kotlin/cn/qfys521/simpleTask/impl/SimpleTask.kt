@@ -12,26 +12,11 @@ import org.bukkit.entity.Player
  * @property taskText 任务的文本
  */
 class SimpleTask(
-    val taskName: String,
-    val taskUuid: String,
-    val taskDescription: String,
-    val taskText: List<String>
+    override val taskName: String,
+    override val taskUuid: String,
+    override val taskDescription: String,
+    override val taskText: List<String>
 ) : Task {
-    override fun taskName(): String {
-        return taskName
-    }
-
-    override fun taskUuid(): String {
-        return taskUuid
-    }
-
-    override fun taskDescription(): String {
-        return taskDescription
-    }
-
-    override fun taskText(): List<String> {
-        return taskText
-    }
 
     /**
      * 任务开始时调用的方法。
@@ -39,7 +24,7 @@ class SimpleTask(
      * @param player 执行任务的玩家
      */
     override fun onStart(player: Player) {
-        player.sendMessage("§a任务开始：$taskName")
+        player.sendMessage("§a对话开始：$taskName")
     }
 
     /**
@@ -48,7 +33,7 @@ class SimpleTask(
      * @param player 执行任务的玩家
      */
     override fun onComplete(player: Player) {
-        player.sendMessage("§6任务完成：$taskName")
+        player.sendMessage("§6对话：$taskName")
     }
 
     /**

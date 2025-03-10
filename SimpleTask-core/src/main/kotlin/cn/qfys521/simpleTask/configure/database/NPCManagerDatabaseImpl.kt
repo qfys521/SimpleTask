@@ -1,7 +1,6 @@
-@file:Suppress("SqlResolve")
+package cn.qfys521.simpleTask.configure.database
 
-package cn.qfys521.simpleTask.database
-
+import cn.qfys521.simpleTask.configure.NCPManager
 import cn.qfys521.simpleTask.core.NPC
 import cn.qfys521.simpleTask.model.NPCData
 import com.google.gson.Gson
@@ -10,7 +9,7 @@ import org.bukkit.entity.Entity
 /**
  * NPC管理类，用于管理NPC的注册、保存和加载。
  */
-class NPCManager {
+class NPCManagerDatabaseImpl : NCPManager {
     private val gson = Gson()
     private val entityToNPC = mutableMapOf<Entity, NPC>()
 
@@ -20,7 +19,7 @@ class NPCManager {
      * @param entity 实体
      * @return 对应的NPC，如果没有则返回null
      */
-    fun getNPCByEntity(entity: Entity): NPC? {
+    override fun getNPCByEntity(entity: Entity): NPC? {
         return entityToNPC[entity]
     }
 
@@ -30,7 +29,7 @@ class NPCManager {
      * @param entity 实体
      * @param npc NPC
      */
-    fun registerNPC(entity: Entity, npc: NPC) {
+    override fun registerNPC(entity: Entity, npc: NPC) {
         entityToNPC[entity] = npc
     }
 
@@ -39,7 +38,7 @@ class NPCManager {
      *
      * @param data NPC数据
      */
-    fun saveNPC(data: NPCData) {
+    override fun saveNPC(data: NPCData) {
         DatabaseUtil.getConnection().prepareStatement("INSERT OR REPLACE INTO npcs (id, data) VALUES (?, ?)")
             .apply {
                 setString(1, data.id)
@@ -54,7 +53,7 @@ class NPCManager {
      * @param id NPC的ID
      * @return NPC数据，如果没有则返回null
      */
-    fun loadNPC(id: String): NPCData? {
+    override fun loadNPC(id: String): NPCData? {
         return DatabaseUtil.getConnection().prepareStatement("SELECT data FROM npcs WHERE id = ?").run {
             setString(1, id)
             val rs = executeQuery()

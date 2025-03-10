@@ -1,7 +1,7 @@
 package cn.qfys521.simpleTask.listener
 
+import cn.qfys521.simpleTask.configure.NCPManager
 import cn.qfys521.simpleTask.core.NPC
-import cn.qfys521.simpleTask.database.NPCManager
 import org.bukkit.entity.Villager
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -12,7 +12,7 @@ import org.bukkit.event.entity.EntityDeathEvent
  *
  * @property npcManager NPC管理器
  */
-class NPCListener(private val npcManager: NPCManager) : Listener {
+class NPCListener(private val npcManager: NCPManager) : Listener {
 
     /**
      * 处理实体死亡事件。

@@ -11,28 +11,28 @@ interface NPC {
      *
      * @return NPC的ID
      */
-    fun id(): String
+    val id: String
 
     /**
      * 获取NPC的名称。
      *
      * @return NPC的名称
      */
-    fun name(): String
+    val name: String
 
     /**
      * 获取NPC的职业。
      *
      * @return NPC的职业
      */
-    fun profession(): String
+    val profession: String
 
     /**
      * 获取NPC的位置。
      *
      * @return NPC的位置，使用三元组表示（x, y, z）
      */
-    fun location(): Triple<Int, Int, Int>
+    val location: Triple<Int, Int, Int>
 
     /**
      * 与玩家互动的方法。

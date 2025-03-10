@@ -9,41 +9,41 @@ interface Dialogue {
     /**
      * 获取当前对话的ID。
      */
-    fun dialogueId(): String
+    val dialogueId: String
     /**
      * 获取NPC的消息。
      *
      * @return NPC的消息
      */
-    fun npcMessage(): String
+    val npcMessage: String
 
     /**
      * 获取玩家的选项列表。
      *
      * @return 玩家选项列表
      */
-    fun playerOptions(): List<String>
+    val playerOptions: List<String>
 
     /**
      * 获取所需物品。
      *
      * @return 所需物品，如果没有则返回null
      */
-    fun requiredItem(): ItemStackData?
+    val requiredItem: ItemStackData?
 
     /**
      * 获取奖励物品。
      *
      * @return 奖励物品，如果没有则返回null
      */
-    fun rewardItem(): ItemStackData?
+    val rewardItem: ItemStackData?
 
     /**
      * 获取下一个对话的ID。
      *
      * @return 下一个对话的ID，如果没有则返回null
      */
-    fun nextDialogueId(): String?
+    val nextDialogueId: String?
 }
 
 /**

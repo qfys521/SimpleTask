@@ -1,0 +1,35 @@
+digraph "SimpleTask" {
+
+    splines = ortho;
+    fontname = "Inconsolata";
+
+    node [colorscheme = ylgnbu4];
+    edge [colorscheme = dark28, dir = both];
+
+    Companion [shape = record, pos = "1.056,13.194!"    , label = "{ Companion |  npcManager : Lazy\<NPCManagerDatabaseImpl\>\l|+ initDatabase() : Connection\l }"];
+    Companion [shape = record, pos = "-9.458,11.833!"   , label = "{ Companion | + fromItemStack(ItemStack) : ItemStackData\l }"];
+    DatabaseUtil [shape = record, pos = "4.931,7.153!"     , label = "{ DatabaseUtil |  connection : Connection\l|+ init() : Unit\l }"];
+    Dialogue [shape = record, pos = "2.361,10.333!"    , label = "{ \<\<interface\>\>\nDialogue |  rewardItem : ItemStackData?\l  playerOptions : List\<String\>\l  npcMessage : String\l  nextDialogueId : String?\l  dialogueId : String\l  requiredItem : ItemStackData?\l }"];
+    DialogueSystem [shape = record, pos = "-6.000,7.153!"    , label = "{ \<\<interface\>\>\nDialogueSystem |  currentDialogue : Dialogue?\l|+ reset() : Unit\l + nextDialogue() : Dialogue?\l }"];
+    NCPManager [shape = record, pos = "1.542,22.542!"    , label = "{ \<\<interface\>\>\nNCPManager | + loadNPC(String) : NPCData?\l + getNPCByEntity(Entity) : NPC?\l + saveNPC(NPCData) : Unit\l + registerNPC(Entity, NPC) : Unit\l }"];
+    NPC [shape = record, pos = "-8.486,22.542!"   , label = "{ \<\<interface\>\>\nNPC |  name : String\l  location : Triple\<Int, Int, Int\>\l  profession : String\l  id : String\l|+ spawnVillager() : Unit\l + interactWithPlayer(Player) : Unit\l }"];
+    NPCListener [shape = record, pos = "0.583,7.153!"     , label = "{ NPCListener | + onEntityDeath(EntityDeathEvent) : Unit\l|+ NPCListener(NCPManager) : \l }"];
+    NPCManagerDatabaseImpl [shape = record, pos = "1.389,19.972!"    , label = "{ NPCManagerDatabaseImpl | + saveNPC(NPCData) : Unit\l + loadNPC(String) : NPCData?\l + getNPCByEntity(Entity) : NPC?\l + registerNPC(Entity, NPC) : Unit\l|+ NPCManagerDatabaseImpl() : \l }"];
+    NPCUtil [shape = record, pos = "2.590,14.764!"    , label = "{ NPCUtil | + NPCUtil() : \l }"];
+    SimpleNPC [shape = record, pos = "-9.458,19.292!"   , label = "{ SimpleNPC |  name : String\l  location : Triple\<Int, Int, Int\>\l  profession : String\l  bukkitEntity : Villager?\l  id : String\l|+ interactWithPlayer(Player) : Unit\l + spawnVillager() : Unit\l - handleTask(Player) : Unit\l - handleDialogue(Player, Dialogue) : Unit\l|+ SimpleNPC(String, String, String, Triple\<Int, Int, Int\>, TaskList, DialogueSystem, Villager?) : \l }"];
+    SimpleTask [shape = record, pos = "-3.722,18.958!"   , label = "{ SimpleTask |  taskDescription : String\l  taskName : String\l  taskUuid : String\l  taskText : List\<String\>\l|+ onFail(Player) : Unit\l + onStart(Player) : Unit\l + onComplete(Player) : Unit\l|+ SimpleTask(String, String, String, List\<String\>) : \l }"];
+    SimpleTaskPlugin [shape = record, pos = "-9.458,7.153!"    , label = "{ SimpleTaskPlugin |  npcManager : NCPManager\l|+ onDisable() : Unit\l + onEnable() : Unit\l|+ SimpleTaskPlugin() : \l }"];
+    Task [shape = record, pos = "-2.813,22.542!"   , label = "{ \<\<interface\>\>\nTask |  taskDescription : String\l  taskName : String\l  taskUuid : String\l  taskText : List\<String\>\l|+ onComplete(Player) : Unit\l + onFail(Player) : Unit\l + onStart(Player) : Unit\l }"];
+    TaskList [shape = record, pos = "-2.542,7.153!"    , label = "{ \<\<interface\>\>\nTaskList |  currentTask : Task?\l|+ nextTask() : Task?\l + hasNextTask() : Boolean\l }"];
+    "data  DialogueData" [shape = record, pos = "-9.458,10.333!"   , label = "{ \<\<data\>\>\ndata  DialogueData |  rewardItem : ItemStackData?\l  playerOptions : List\<String\>\l  npcMessage : String\l  nextDialogueId : String?\l  requiredItem : ItemStackData?\l|+ DialogueData(String, List\<String\>, ItemStackData?, ItemStackData?, String?) : \l }"];
+    "data  ItemStackData" [shape = record, pos = "-9.208,14.764!"   , label = "{ \<\<data\>\>\ndata  ItemStackData |  displayName : String?\l  amount : Int\l  type : String\l|+ toItemStack() : ItemStack\l|+ ItemStackData(String, Int, String?) : \l }"];
+    "data  NPCData" [shape = record, pos = "-4.861,14.764!"   , label = "{ \<\<data\>\>\ndata  NPCData |  name : String\l  dialogueSystem : List\<DialogueData\>\l  location : Triple\<Int, Int, Int\>\l  profession : String\l  id : String\l  taskList : List\<TaskData\>\l|+ NPCData(String, String, String, Triple\<Int, Int, Int\>, List\<TaskData\>, List\<DialogueData\>) : \l }"];
+    "data  TaskData" [shape = record, pos = "-3.319,10.333!"   , label = "{ \<\<data\>\>\ndata  TaskData |  completed : Boolean\l  taskDescription : String\l  taskName : String\l  taskUuid : String\l  taskText : List\<String\>\l|+ TaskData(String, String, String, List\<String\>, Boolean) : \l }"];
+
+    Companion -> NPCUtil [color = "#820000", style = solid , arrowtail = odot    , arrowhead = none    , taillabel = "", label = "", headlabel = ""];
+    Companion -> "data  ItemStackData" [color = "#820000", style = solid , arrowtail = odot    , arrowhead = none    , taillabel = "", label = "", headlabel = ""];
+    NPCManagerDatabaseImpl -> NCPManager [color = "#008200", style = dashed, arrowtail = none    , arrowhead = normal  , taillabel = "", label = "", headlabel = ""];
+    SimpleNPC -> NPC [color = "#008200", style = dashed, arrowtail = none    , arrowhead = normal  , taillabel = "", label = "", headlabel = ""];
+    SimpleTask -> Task [color = "#008200", style = dashed, arrowtail = none    , arrowhead = normal  , taillabel = "", label = "", headlabel = ""];
+
+}
