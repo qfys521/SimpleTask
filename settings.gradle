@@ -10,4 +10,3 @@ rootProject.name = 'SimpleTask'
 
 include 'SimpleTask-core'
 include 'SimpleTask-core-impl'
-include 'SimpleTask-core-impl-database'

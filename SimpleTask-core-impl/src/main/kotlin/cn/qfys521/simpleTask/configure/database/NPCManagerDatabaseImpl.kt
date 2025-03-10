@@ -1,4 +1,6 @@
-package cn.qfys521.simpleTask.database
+@file:Suppress("SqlDialectInspection")
+
+package cn.qfys521.simpleTask.configure.database
 
 import cn.qfys521.simpleTask.configure.NCPManager
 import cn.qfys521.simpleTask.core.NPC

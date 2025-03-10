@@ -24,6 +24,10 @@ allprojects {
 }
 
 
+dependencies {
+    implementation(project(":SimpleTask-core"))
+    implementation(project(":SimpleTask-core-impl"))
+}
 
 kotlin {
     jvmToolchain(17)
