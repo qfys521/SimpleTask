@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.jvm'
     id 'org.jetbrains.dokka' version '1.9.20' // 添加 Dokka 插件
     id("com.gradleup.shadow") version "9.0.0-beta10"
+    id 'maven-publish'
 }
 
 allprojects {
@@ -22,6 +23,7 @@ allprojects {
         }
     }
 }
+
 
 
 dependencies {
@@ -46,4 +48,40 @@ tasks.dokkaGfm {
 
 tasks.dokkaJekyll {
     outputDirectory.set(file("$buildDir/dokka/dokkaJekyll")) // 设置输出目录
+}
+
+task sourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    from sourceSets.main.allSource
+}
+
+task dokkaJavadocJar(type: Jar) {
+    archiveClassifier.set('javadoc')
+    from tasks.dokkaJavadoc
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            artifact sourcesJar
+            artifact dokkaJavadocJar
+        }
+    }
+    repositories {
+        mavenLocal() {
+        }
+    }
+}
+
+tasks.publishAllPublicationsToMavenLocalRepository.dependsOn(
+        tasks.sourcesJar,
+        tasks.dokkaJavadocJar
+)
+
+tasks.register("pubToLocal") {
+    dependsOn {
+        tasks.clean
+        tasks.publishAllPublicationsToMavenLocalRepository
+    }
 }
