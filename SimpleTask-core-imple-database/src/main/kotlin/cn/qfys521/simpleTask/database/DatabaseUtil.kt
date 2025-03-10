@@ -1,6 +1,6 @@
 @file:Suppress("SqlDialectInspection")
 
-package cn.qfys521.simpleTask.configure.database
+package cn.qfys521.simpleTask.database
 
 import java.sql.Connection
 import java.sql.DriverManager

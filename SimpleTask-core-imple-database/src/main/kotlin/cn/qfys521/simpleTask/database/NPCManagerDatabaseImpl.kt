@@ -1,4 +1,4 @@
-package cn.qfys521.simpleTask.configure.database
+package cn.qfys521.simpleTask.database
 
 import cn.qfys521.simpleTask.configure.NCPManager
 import cn.qfys521.simpleTask.core.NPC
